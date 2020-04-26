@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
+    <title>COVID19 - Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://unpkg.com/chartkick@3.2.0/dist/chartkick.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <div class="main-container">
+
+        <div class="dash-title">CORONA VIRUS TRACKER</div>
+
+        <div class="chartsDiv flex-container">
+
+            <div class="chart_card">
+                <h3>WORLD WIDE DATA</h3>
+                <div class="chart_render">
+                    <h3>Total Cases</h3>
+                    <h2 class="animate_number" id="TotalCases" style="color:yellow"></h2>
+
+                    <h3>Total Deaths</h3>
+                    <h2 class="animate_number"  id="Totaldeaths"  style="color:red"></h2>
+
+                    <h3>Total Recovered</h3>
+                    <h2 class="animate_number"  id="Totalrecovered" style="color:green"></h2>
+
+                </div>
+            </div>
+
+            <div class="chart_card">
+                <h4>Cases on the World Map</h4>
+                <div id="geo" class="chart_render"></div>
+            </div>
+
+            <div class="chart_card">
+                <h4>Deaths per 1m population (Mortality)</h4>
+                <div id="mortality"></div>
+            </div>
+
+            <div class="chart_card">
+                <h4>US Total Cases:</h4>
+                <div id="US_DATA" class="chart_render"></div>
+            </div>
+
+            <div class="chart_card">
+                <h4>Top 5 Countries - Deaths with Recovered Cases</h4>
+                <div id="multiple-bar" class="chart_render"></div>
+            </div>
+
+            <div class="chart_card">
+                <h4>Top 5 Countries - Deaths with Critical Cases</h4>
+                <div id="stacked-bar" class="chart_render"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- EJS Data from Controller -->
+    <!-- <input id="covidData" value="<%=covid%>" hidden> -->
+    <!-- <input id="mortalityData" value="<%=mortality%>" hidden> -->
+    <!-- <input id="US_Cases" value="<%=US_Cases%>" hidden>
+    <input id="US_Deaths" value="<%=US_Deaths%>" hidden>
+    <input id="US_Critical" value="<%=US_Critical%>" hidden>
+    <input id="US_Recovered" value="<%=US_Recovered%>" hidden>
+    <input id="US_Active" value="<%=US_Active%>" hidden> -->
+    <!-- <input id="top5Recovered" value="<%=top5Recovered%>" hidden>
+    <input id="top5Deaths" value="<%=top5Deaths%>" hidden>
+    <input id="top5Critical" value="<%=top5Critical%>" hidden> -->
+    <!-- EJS Data from Controller -->
+</body>
+
+<script src="main.js"></script>
+
+</html>
