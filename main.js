@@ -1,18 +1,15 @@
 /*Corona API - Start*/
 var settings = {
-  "url": "https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php",
+  "url": "https://vedantbhoj.com/covid19/api.php",
+  "async": true,
   "method": "GET",
-  "timeout": 0,
-  "headers": {
-    "x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
-    "x-rapidapi-key": "{}" //Do something to get this key securely
-  },
+  "timeout": 0
 };
 
 
 $.ajax(settings).done(function (response) {
-    console.log(JSON.parse(response));
-    var covid = JSON.parse(response).data.covid19Stats;
+    //console.log(JSON.parse(response));
+    var covid = JSON.parse(response).countries_stat;
     var main = [];
     var scatter_pop = [];
     var scatter_deaths = [];
@@ -26,10 +23,15 @@ $.ajax(settings).done(function (response) {
     var US_Active;
 
     function toNumber(data) {
-        return parseInt(data.replace(/,/g, ''), 10);
+        if(data=="N/A") 
+            return 0;
+        else
+            return parseInt(data.replace(/,/g, ''), 10);
     }
 
     for (item in covid) {
+        if(covid[item].country_name !=="")
+        {
         var jsonobject = [];
 
         var cases = toNumber(covid[item].cases);
@@ -48,16 +50,21 @@ $.ajax(settings).done(function (response) {
         scatter_pop.push(populationPerCountry * 1000000);
         scatter_deaths.push(deaths);
         scatter_countryName.push(covid[item].country_name);
+        
+        if(covid[item].country_name == "USA")
+            jsonobject.push("US", cases);
+        else
+            jsonobject.push(covid[item].country_name, cases);
 
-        jsonobject.push(covid[item].country_name, cases);
         main.push(jsonobject);
+        }
     }
 
     scatterMortality.push(scatter_pop, scatter_deaths, scatter_countryName);
 
 
     var covid_US = covid.filter(function (item) {
-        return item.country_name == "US";
+        return item.country_name == "USA";
     })
 
     var top5 = covid.sort(function (a, b) { return toNumber(a.deaths) < toNumber(b.deaths) ? 1 : -1; }).slice(0, 5);
